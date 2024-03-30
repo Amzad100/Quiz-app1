@@ -1,37 +1,112 @@
 import { Link } from "react-router-dom";
+import ani from "./login.json";
+import Lottie from "lottie-react";
+import { useState } from "react";
+import LoginValidation from "./LoginValidation";
+
+
+
 
 const Login = () => {
+    const [values, setValues] = useState({
+        email: '',
+        password: ''
+    })
+
+    const [errors, setErrors] = useState({})
+    const handleInput = (event) => {
+        setValues(prev => ({ ...prev, [event.target.name]: [event.target.value] }))
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        setErrors(LoginValidation(values));
+    };
+
+
     return (
-        <div>
-            <div className="hero bg-base-200">
-                <div className="card flex-shrink-0 my-5 w-full max-w-sm shadow-2xl bg-base-100">
-                    <h1 className="text-5xl font-bold text-center mt-5">Login</h1>
-                    <form>
-                        <div className="card-body">
-                            <div className="form-control">
+
+        <>
+            <div className="flex flex-col-reverse lg:flex-row justify-center items-center gap-3 py-3">
+                <div className="flex justify-center items-center lg:py-[5%] px-[2%] md:w-1/2">
+                    <form action=""
+                        className="max-w-sm w-full text-center"
+                        onSubmit={handleSubmit}
+                    >
+                        <div className="form-control">
+                            <h1 className="text-3xl font-semibold text-center my-5 border-b-2 border-[#f4976c] py-2">
+                                Login Now
+                            </h1>
+
+                            <div className="mb-3">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text font-semibold">
+                                        *Enter Your Email
+                                    </span>
                                 </label>
-                                <input type="text" name='email' placeholder="email" className="input input-bordered" />
+                                <input
+                                    type="email"
+                                    onChange={handleInput}
+                                    placeholder="Email"
+                                    name="email"
+                                    className="input input-bordered input-accent w-full"
+                                />
+                                {errors.email && <span className="text-danger">{errors.email}</span>}
                             </div>
-                            <div className="form-control">
+
+                            <div className="mb-3">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text font-semibold">
+                                        *Enter Your Password
+                                    </span>
                                 </label>
-                                <input type="text" name='password' placeholder="password" className="input input-bordered" />
-                                <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                                </label>
+                                <input
+                                    type="password"
+                                    onChange={handleInput}
+                                    name="password"
+                                    placeholder="Password"
+                                    className="input input-bordered input-accent w-full "
+                                />
+                                {errors.password && <span className="text-danger">{errors.password}</span>}
                             </div>
-                            <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+
+
+
+                            <div className="mt-4">
+                                <p>
+                                    New User?{" "}
+                                    <Link to="/signup" className="font-semibold">
+                                        Sign Up
+                                    </Link>{" "}
+                                </p>
                             </div>
-                            <p className='text-center'>Do you new Quiz app? <Link className='text-orange-500 font-bold' to='/signup'> SignUP</Link></p>
+
+                            <div className="text-center mt-[4%] bg-cyan-400 px-5 py-3 rounded-md flex justify-center items-center">
+                                <button type='submit' className="my-btn text-black font-semibold">
+                                    Login
+                                </button>
+                            </div>
+                            <div className="divider">Or Sign in With</div>
+                            <div className="flex justify-around items-center gap-2">
+                                <div
+                                    // onClick={handleGoogleSignin}
+                                    className=" bg-green-400 px-5 py-3 rounded-md flex justify-center items-center"
+                                >
+                                    {/* <FcGoogle className="text-xl"></FcGoogle> */}
+                                    <button className="text-white font-semibold">Google</button>
+                                </div>
+                                <div className=" bg-cyan-400 px-5 py-3 rounded-md flex justify-center items-center">
+                                    {/* <FaGithub className="text-xl text-black"></FaGithub> */}
+                                    <button className="text-black font-semibold">GitHub</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
+                <div className="md:w-1/2">
+                    <Lottie className="h-[400px] lg:h-[600px]" animationData={ani}></Lottie>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

@@ -1,46 +1,75 @@
+import Lottie from "lottie-react";
 import { Link } from "react-router-dom";
+import ani from './signup.json'
 
 const Signup = () => {
     return (
-        <div>
-            <div className="hero bg-base-200">
-                <div className="card flex-shrink-0 my-5 w-full max-w-sm shadow-2xl bg-base-100">
-                    <h1 className="text-5xl font-bold text-center mt-5">Sign Up</h1>
-                    <form>
-                        <div className="card-body">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Name</span>
-                                </label>
-                                <input type="text" name='name' placeholder="Name" className="input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Email</span>
-                                </label>
-                                <input type="text" name='email' placeholder="email" className="input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Password</span>
-                                </label>
-                                <input type="text" name='password' placeholder="password" className="input input-bordered" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Photo URL</span>
-                                </label>
-                                <input type="text" name='photoURL' placeholder="photoURL" className="input input-bordered" />
-                            </div>
-                            <div className="form-control mt-6">
-                                <input className="btn btn-primary" type="submit" value="Sign Up" />
-                            </div>
-                            <p className='text-center'>Already have an account? <Link className='text-orange-500 font-bold' to='/login'> login</Link></p>
-                        </div>
-                    </form>
+        
+        <>
+            <div className="flex flex-col lg:flex-row justify-center items-center gap-5 px-3 py-5">
+                <div className="">
+                    <Lottie className="lg:h-[600px]" animationData={ani}></Lottie>
                 </div>
+                <div className="flex justify-center items-center lg:py-[5%]">
+                    <form className="max-w-sm w-full text-center"
+                    // onSubmit={handleSubmit(onSubmit)}
+                    >
+                        <div className="form-control">
+                            <h1 className="text-3xl font-semibold text-center my-5 border-b-2 pb-2 border-[#f4976c]">Registration Now</h1>
+                            <label className="label">
+                                <span className="label-text font-semibold">*Enter Your Email</span>
+                            </label>
+                            <input type="text" placeholder="Email" className="input input-bordered input-accent w-full"
+
+                            />
+
+
+                            <label className="label">
+                                <span className="label-text font-semibold">*Choose Password</span>
+                            </label>
+                            <input type="password" placeholder="Password"
+                                className="input input-bordered input-accent w-full " />
+
+                            <div className='flex flex-col md:flex-row justify-center items-center gap-5'>
+                                <div className="form-control w-full ">
+                                    <label className="label">
+                                        <span className="label-text font-semibold">*Enter Your Name</span>
+                                    </label>
+                                    <input type="text" placeholder="Name"
+                                        className="input input-bordered input-accent w-full" />
+                                </div>
+
+                                <div className="form-control w-full ">
+                                    <label className="label">
+                                        <span className="label-text font-semibold">*Class Roll</span>
+                                    </label>
+                                    <input type="number" placeholder="Roll"
+                                        className="input input-bordered input-accent w-full" />
+                                </div>
+                            </div>
+
+
+
+                            <div className="text-center mt-[4%] bg-cyan-400 px-5 py-3 rounded-md flex justify-center items-center">
+                                <button type="submit" className="my-btn">Create</button>
+                            </div>
+
+                            <div className="mt-4">
+                                <p>
+                                    Already have an account?{" "}
+                                    <Link to="/login" className="font-semibold">
+                                        Login
+                                    </Link>{" "}
+                                </p>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
             </div>
-        </div>
+        </>
     )
 }
 
